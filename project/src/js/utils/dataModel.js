@@ -96,14 +96,11 @@ const NewsModel = {
 }
 
 const HouseModel = {
-  getTopHouses: (param, success, error) => {
-    _request('GET', `${API}/house/tophouses`, param, success, error)
-  },
   saveHouse: (param, success, error) => {
     _request('POST', `${API}/house/save`, param, success, error)
   },
   getHouseByCondition: (param, success, error) => {
-    _request('GET', `${API}/house/condition`, param, success, error)
+    _request('GET', `${API}/house/list`, param, success, error)
   },
   getHouseByMe: (param, success, error) => {
     _request('GET', `${API}/house/house-by-me`, param, success, error)

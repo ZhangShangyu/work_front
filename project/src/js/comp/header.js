@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from './login';
-import Register from './register';
 import { Row, Col, Menu, Icon, Tabs, Button, Modal} from 'antd';
 import logo from '../../img/logo.svg';
 import { UserModel } from '../utils/dataModel'
@@ -78,7 +77,7 @@ export default class Header extends React.Component {
             onClick={this.logout.bind(this)}>退出</Button>
         </Menu.Item>
       : <Menu.Item key='register' className='register'>
-        <Icon type='appstore'/>注册/登录
+        <Icon type='appstore'/>经纪人登录
       </Menu.Item>;
 
     const formItemLayout = {
@@ -116,7 +115,7 @@ export default class Header extends React.Component {
 
             <Modal
               wrapClassName='vertical-center-modal'
-              title='用户中心'
+              title='经纪人中心'
               visible={this.state.modalVisible}
               onCancel={() => this.setModalVisible(false)}
               onOk={() => this.setModalVisible(false)}
@@ -130,14 +129,6 @@ export default class Header extends React.Component {
                     action={this.state.action}
                     setHeaderState={this.setHeaderState.bind(this)}>
                   </Login>
-                </TabPane>
-                <TabPane tab='注册' key='2'>
-                  <Register
-                    formItemLayout={formItemLayout}
-                    tailFormItemLayout={tailFormItemLayout}
-                    setModalVisible={this.setModalVisible.bind(this)}
-                    action={this.state.action}>
-                  </Register>
                 </TabPane>
               </Tabs>
             </Modal>

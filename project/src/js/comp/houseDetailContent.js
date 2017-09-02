@@ -21,18 +21,16 @@ export default class HouseDetailContent extends React.Component {
   }
 
   componentDidMount() {
-    this.getHouseDetail(this.addBrowseCount, this.getLonLat)
-    this.getSimilarHouses()
+    this.getHouseDetail(this.getLonLat)
   }
 
-  getHouseDetail(addBrowseCount, getLonLat) {
+  getHouseDetail(getLonLat) {
     let param = {
       id: this.props.match.params.id,
     }
     HouseModel.getHouseDetail(param, (response) => {
       if (response.code === 200) {
         this.setState({houseContent: response.data});
-        addBrowseCount(response.data.saleType, param.id)
         getLonLat(response.data.address)
       } else {
         message.error("获取房源详情失败")
@@ -42,34 +40,6 @@ export default class HouseDetailContent extends React.Component {
     })
   }
 
-  getSimilarHouses() {
-    let param = {
-      houseId: this.props.match.params.id,
-    }
-    HouseModel.getSimilarHouses(param, (response) => {
-      if (response.code === 200) {
-        this.setState({similarHouses: response.data})
-      }
-    }, (err) => {
-      console.log(err)
-    })
-  }
-
-  addBrowseCount(saleType, houseId) {
-    let userId = UserModel.getUserInfo().userId;
-    if (userId) {
-      let countParam = {
-        userId,
-        saleType,
-        houseId,
-      };
-      HouseModel.addBrowseCount(countParam, (response) => {
-        // do nothing
-      }, (err) => {
-        console.log(err)
-      })
-    }
-  }
 
   getLonLat = (address) => {
     let searchKey = address ? address : '同济大学四平路'
@@ -97,10 +67,9 @@ export default class HouseDetailContent extends React.Component {
   render() {
     const content = this.state.houseContent
     const imgList = content.imgUrls ? content.imgUrls : []
-    const createTime = content.createTime ? content.createTime.substring(0, 10) : ''
-    const similarHouses = this.state.similarHouses
-    const unit = content.saleType === 1 ? '万元' : '元'
-    const type = content.saleType === 1 ? '出售' : '出租'
+    const createTime = content.upTime ? content.upTime.substring(0, 10) : ''
+    const unit = '万元'
+    const type = '出售'
     const settings = {
       infinite: true,
       speed: 500,
@@ -108,21 +77,6 @@ export default class HouseDetailContent extends React.Component {
       autoplay: true,
     };
 
-    const styleDiv = {
-      width: '33%',
-      height: '40%',
-      float: 'left',
-      padding: 8,
-    };
-
-    const styleH3 = {
-      overflow: 'hidden',
-    };
-    const styleImg = {
-      height: '100%',
-      display: 'block',
-      width: '100%',
-    };
 
     return (
       <div>
@@ -158,19 +112,16 @@ export default class HouseDetailContent extends React.Component {
               <div style={{float: 'left'}}>
                 <span>价格： <strong
                   style={{color: 'red', fontSize: '17px'}}>{content.price}{unit}</strong></span><br/><br/>
-                <span>房型： {content.type}</span><br/><br/>
                 <span>上架时间： {createTime}</span><br/><br/>
+                <span>建造年代： {content.year}</span><br/><br/>
+                <span>户型： {content.room}室{content.hall}厅</span><br/><br/>
                 <span>位置： {content.address}</span><br/><br/>
-                <span>地铁线路: {content.route}</span><br/><br/>
-                <span>联系人: {content.contact}</span><br/><br/>
               </div>
               <div style={{marginLeft: '50%'}}>
                 <span>上架类型： <strong style={{fontSize: '17px'}}>{type}</strong></span><br/><br/>
                 <span>面积： {content.area} 平米</span><br/><br/>
-                <span>装修： {content.dec}</span><br/><br/>
                 <span>楼层： {content.position}</span><br/><br/>
-                <span>地铁站： {content.station}</span><br/><br/>
-                <span>联系电话: {content.phone}</span><br/><br/>
+                <span>总楼层： {content.allPos}</span><br/><br/>
               </div>
             </Card>
           </Col>
@@ -199,27 +150,6 @@ export default class HouseDetailContent extends React.Component {
             </Card>
           </Col>
           <Col span={7}></Col>
-        </Row>
-        <Row>
-          <Col span={6}></Col>
-          <Col span={12}>
-            <div style={{marginTop: '5%'}}>
-              { (similarHouses.length > 0) &&
-              (<Card title="相似房源推荐">
-                {similarHouses.map((houseItem, index) =>
-                  <div key={index} style={styleDiv}>
-                    <Link to={`house-detail/${houseItem.houseId}`} target='_blank' style={{color: '#666'}}>
-                      <img style={styleImg} src={houseItem.headImg}/>
-                      <div style={{textAlign: 'center'}}>
-                        <h3 style={styleH3}>{houseItem.name}</h3>
-                      </div>
-                    </Link>
-                  </div>)}
-              </Card>)
-              }
-            </div>
-          </Col>
-          <Col span={6}></Col>
         </Row>
       </div>
     )
