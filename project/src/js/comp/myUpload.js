@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon, Upload, Modal, message } from 'antd'
-import PropTypes from 'prop-types';
 import Constant from '../utils/constant'
 
 
@@ -36,7 +35,7 @@ export default class MyUpload extends React.Component {
 
   render () {
     const uploadProps = {
-      action: Constant.NEWS_PIC_UPLOAD_API,
+      action: Constant.PIC_UPLOAD_API,
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
@@ -70,6 +69,3 @@ export default class MyUpload extends React.Component {
   }
 }
 
-MyUpload.propTypes = {
-  setUploadImgUrls: PropTypes.func,
-}

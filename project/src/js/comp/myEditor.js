@@ -3,18 +3,18 @@ import '../../css/quill.snow.css'
 import ReactQuill from 'react-quill'
 
 export default class MyEditor extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.state = { editorHtml: '' }
+    this.state = {editorHtml: ''}
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange (html) {
-  	this.setState({ editorHtml: html })
-  	this.props.setHtmlContent(html)
+  handleChange(html) {
+    this.setState({editorHtml: html})
+    this.props.setHtmlContent(html)
   }
 
-  render () {
+  render() {
     return (
       <ReactQuill
         theme={'snow'}
@@ -22,9 +22,9 @@ export default class MyEditor extends React.Component {
         value={this.state.editorHtml}
         modules={MyEditor.modules}
         formats={MyEditor.formats}
-        placeholder={"编辑新闻内容"}
+        placeholder={"编辑房源描述"}
       />
-     )
+    )
   }
 }
 
@@ -34,12 +34,11 @@ export default class MyEditor extends React.Component {
  */
 MyEditor.modules = {
   toolbar: [
-    [{ 'header': [1, 2, false] }, { 'font': [] }],
+    [{'header': [1, 2, false]}, {'font': []}],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
     [{'list': 'ordered'}, {'list': 'bullet'},
-     {'indent': '-1'}, {'indent': '+1'}],
-    ['link', 'image', 'video'],
-    ['clean']
+      {'indent': '-1'}, {'indent': '+1'}],
+    ['link'], ['clean']
   ]
 }
 /*

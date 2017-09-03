@@ -67,9 +67,9 @@ export default class Header extends React.Component {
       ? <Menu.Item key='logout' className='register'>
           <Button type='primary' htmlType='button'>{this.state.userNickName}</Button>
           &nbsp;&nbsp;
-          {/*<Link to={`/usercenter`} target='_blank'>*/}
-            <Button type="dashed" htmlType="button">个人中心</Button>
-          {/*</Link>*/}
+          <Link to={`/usercenter`} target='_blank'>
+            <Button type="dashed" htmlType="button">经纪人中心</Button>
+          </Link>
           &nbsp;&nbsp;
           <Button
             type='ghost'

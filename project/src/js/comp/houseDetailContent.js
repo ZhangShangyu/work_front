@@ -1,8 +1,7 @@
 import React from 'react'
 import {Row, Col, message, Carousel, Card} from 'antd'
 import {Map, Marker} from 'react-amap'
-import {Link} from 'react-router-dom'
-import {HouseModel, UserModel, MapModel} from '../utils/dataModel'
+import {HouseModel, MapModel} from '../utils/dataModel'
 import Constant from '../utils/constant'
 
 

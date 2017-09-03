@@ -73,7 +73,7 @@ const UserModel = {
     _request('POST', `${API}/register`, _params, _success, _error)
   },
   login: (_params, _success, _error) => {
-    _request('POST', `${API}/login`, _params, _success, _error)
+    _request('POST', `${API}/agent/login`, _params, _success, _error)
   },
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Cascader} from 'antd'
+import {Card} from 'antd'
 import Constant from '../utils/constant'
 
 export default class ConditionBox extends React.Component {

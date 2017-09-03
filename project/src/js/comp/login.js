@@ -5,13 +5,6 @@ import {UserModel} from '../utils/dataModel'
 const FormItem = Form.Item;
 
 class Login extends React.Component {
-  //  static propTypes = {
-  //    formItemLayout: React.PropTypes.object.isRequired,
-  //    tailFormItemLayout: React.PropTypes.object.isRequired,
-  //    action: React.PropTypes.string.isRequired,
-  //    setHeaderState: React.PropTypes.func.isRequired,
-  //    setModalVisible: React.PropTypes.func.isRequired,
-  // }
 
   constructor() {
     super();
@@ -26,34 +19,31 @@ class Login extends React.Component {
       if (!err) {
         var formData = values;
         if (this.props.action == 'login') {
-          message.success('登录成功')
-
-          // let param = {
-          //   name: formData.username,
-          //   password: formData.password,
-          // }
-          // UserModel.login(param, (data) => {
-          //   if (data.code === 200) {
-          //     const newState = {
-          //       hasLogined: true,
-          //       userNickName: formData.username,
-          //     }
-          //     this.props.setHeaderState(newState);
-          //     this.props.form.resetFields();
-          //     this.props.setModalVisible(false);
-          //     UserModel.storeUser({
-          //       username: formData.username,
-          //       password: formData.password,
-          //       userId: data.data.id,
-          //       role: data.data.roleId,
-          //     })
-          //     message.success('登录成功')
-          //   } else {
-          //     message.error('账号或密码错误！')
-          //   }
-          // }, (err) => {
-          //   message.error(err)
-          // })
+          let param = {
+            name: formData.username,
+            password: formData.password,
+          }
+          UserModel.login(param, (response) => {
+            if (response.code === 200) {
+              const newState = {
+                hasLogined: true,
+                userNickName: formData.username,
+              }
+              this.props.setHeaderState(newState);
+              this.props.form.resetFields();
+              this.props.setModalVisible(false);
+              UserModel.storeUser({
+                username: formData.username,
+                password: formData.password,
+                userId: response.data,
+              })
+              message.success('登录成功')
+            } else {
+              message.error('账号或密码错误！')
+            }
+          }, (err) => {
+            message.error(err)
+          })
         }
       }
     });
