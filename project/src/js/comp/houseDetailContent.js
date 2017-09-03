@@ -130,8 +130,10 @@ export default class HouseDetailContent extends React.Component {
           <Col span={7}></Col>
           <Col span={10}>
             <Card title='业主描述' style={{}}>
-              <div>
-                {content.des}
+              <div style={{marginTop: '2%', marginLeft: '20%', marginRight: '20%', whiteSpace: 'pre-wrap'}}
+                   dangerouslySetInnerHTML={{
+                     __html: content.des
+                   }}>
               </div>
             </Card>
           </Col>
