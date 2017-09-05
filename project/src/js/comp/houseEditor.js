@@ -53,9 +53,11 @@ export default class HouseEditor extends React.Component {
 
   checkParam = () => {
     let state = this.state
-    if (state.name === '' || state.position === ''
-      || state.price === '' || state.area === ''
-      || state.des === '' || state.type === '') {
+    if (state.name === '' || !Number.isInteger(state.position)
+      || !Number.isInteger(state.price) || !Number.isInteger(state.area)
+      || state.des === '' || state.type === ''
+      || !Number.isInteger(state.allPos)
+      || !Number.isInteger(state.year)) {
       message.error("请填写完整")
       return false
     }
