@@ -1,5 +1,8 @@
-const API = 'http://118.89.161.69:8080'
+const LOCAL_HOST = 'http://localhost:8080'
 
+const REMOTE = 'http://118.89.161.69/api/'
+
+const API = REMOTE
 
 const rentPriceOptions = [
   {value: 0, label: '不限'},
@@ -39,7 +42,7 @@ const LON_LAT_KEY = '7d553805f6fa2d91c6c71e1b44ac88c2'
 
 const Constant = {
   API: API,
-  PIC_UPLOAD_API: API + '/house/upload',
+  PIC_UPLOAD_API: 'http://118.89.161.69/up/house/upload',
   USER_INFO: 'userInfo',
   RENT_PRICE_OPTIONS: rentPriceOptions,
   AREA_OPTIONS: areaOptions,

@@ -77,23 +77,6 @@ const UserModel = {
   },
 }
 
-const NewsModel = {
-  getNews: (param, success, error) => {
-    _request('GET', `${API}/news/get`, param, success, error)
-  },
-  saveNews: (param, success, error) => {
-    _request('POST', `${API}/news/save`, param, success, error)
-  },
-  getNewsDetail: (param, success, error) => {
-    _request('GET', `${API}/news/detail`, param, success, error)
-  },
-  getNewsByMe: (param, success, error) => {
-    _request('GET', `${API}/news/news-by-me`, param, success, error)
-  },
-  getRcmdNews: (param, success, error) => {
-    _request('GET', `${API}/news/recommend`, param, success, error)
-  },
-}
 
 const HouseModel = {
   saveHouse: (param, success, error) => {
@@ -128,4 +111,4 @@ const MapModel = {
   },
 }
 
-export {UserModel, NewsModel, HouseModel, MapModel}
+export {UserModel, HouseModel, MapModel}
