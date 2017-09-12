@@ -54,6 +54,7 @@ export default class HouseImgBlock extends React.Component {
       param.searchKey = searchKey
     }
     this.getPageContent(param)
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   render() {
