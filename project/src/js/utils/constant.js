@@ -36,6 +36,11 @@ const typeOptionsForUpload = [
   {value: 5, label: '4室以上'},
 ]
 
+const sortOptions = [
+  {value: 'a', label: '发布时间'},
+  {value: 'b', label: '面积'},
+  {value: 'c', label: '价格'},
+]
 
 const MAP_KEY = 'b68328f20e4239926ef3a17fbec30f7a'
 const LON_LAT_KEY = '7d553805f6fa2d91c6c71e1b44ac88c2'
@@ -47,6 +52,7 @@ const Constant = {
   RENT_PRICE_OPTIONS: rentPriceOptions,
   AREA_OPTIONS: areaOptions,
   TYPE_OPTIONS: typeOptions,
+  SORT_OPTIONS: sortOptions,
   TYPE_OPTIONS_UPLOAD: typeOptionsForUpload,
   MAP_KEY,
   LON_LAT_KEY,
