@@ -36,16 +36,22 @@ export default class ConditionBox extends React.Component {
       case 'price':
         this.setState({
           priceClickedIndex: index, priceValue: value,
+          areaClickedIndex: 0, areaValue: 0,
+          typeClickedIndex: 0, typeValue: 0
         }, () => this.setSearchCondition())
         break
       case 'area':
         this.setState({
           areaClickedIndex: index, areaValue: value,
+          priceClickedIndex: 0, priceValue: 0,
+          typeClickedIndex: 0, typeValue: 0
         }, () => this.setSearchCondition())
         break;
       case 'type':
         this.setState({
           typeClickedIndex: index, typeValue: value,
+          priceClickedIndex: 0, priceValue: 0,
+          areaClickedIndex: 0, areaValue: 0,
         }, () => this.setSearchCondition())
         break
       case 'sort':
